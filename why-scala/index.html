@@ -1,0 +1,301 @@
+<!doctype html>
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Toronto Scala Night School</title>
+
+		<meta name="description" content="Scala for all">
+		<meta name="author" content="katrinsh, randomom">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/intellij.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/darkula.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="footer">
+				<p>
+					<small><a href="http://scalator.ca/initiatives/">#tsns #scala</a></small>
+				</p>
+			</div>	
+
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>TSNS</h1>
+					<h3>Toronto Scala Night School</h3>
+					<p>
+						<small>Katrin Shechtman/<a target="_blank" href="http://twitter.com/katrinsh">@katrinsh</a></small>
+						<small>Sean Glover/<a target="_blank" href="http://twitter.com/randonom">@randonom</a></small>
+					</p>
+					<div><a target="_blank" href="http://www.meetup.com/scalator/"><img src="img/logo.jpeg" width="30%"></a></div>
+				</section>
+
+				<section>
+					<h1>Why bother to gather ?</h1>
+					<h3>Scala / School / Night / Toronto</h3>
+					<div><img src="img/nothing-makes-me.png" width="50%"></div>
+					<h1>How about you ?</h1>
+				</section>
+				
+				<section>
+					<h1>The plan</h1>
+					<h2 class="fragment fade-in">5 sessions</h2>
+					<h3 class="fragment fade-in">spread over 2 months</h3>		
+					<h1 class="fragment fade-in">
+						<a target="_blank" href="http://www.meetup.com/scalator/events/228165694/">Schedule details on meetup.com</a>
+					</h1>
+				</section>
+
+				<section>
+					<h1>What will be covered</h1>
+					<h3 class="fragment">Fundamental principles</h3>
+					<h3 class="fragment">Basic syntax</h3>
+					<h3 class="fragment">Scala collections</h3>
+					<h3 class="fragment">Pattern matching</h3>
+					<h3 class="fragment">Error handling</h3>
+				</section>
+
+				<section>
+					<h3>What won't be covered</h3>
+					<h1 class="fragment">The rest :)</h1>
+					<small class="fragment">Covariance and contravariance</small>
+					<small class="fragment">, monads</small>
+					<small class="fragment">, implicit classes</small>
+					<small class="fragment">, sealed traits</small>
+					<small class="fragment">, currying</small>
+					<small class="fragment">, extractors</small>
+					<small class="fragment">, path-dependent paths</small>
+					<small class="fragment">, existential type</small>
+					<small class="fragment">, futures and promises</small>
+					<small class="fragment">, breakOut and CanBuildFrom</small>
+					<small class="fragment">, self-types and Cake pattern</small>
+					<small class="fragment">, macros</small>
+					<small class="fragment"> ...</small>
+					<h1 class="fragment">SO ...</h1>
+				</section>
+
+				<section>
+					<h1>By the end of session #1</h1>
+					<h3 class="fragment"> You will be able to persuade your co-worker why Scala is better choice than Java or Python</h3>
+				</section>
+
+				<section>
+					<h1>By the end of session #2</h1>
+					<h3 class="fragment"> You will embrace that 'Scala is not too complicated' and will firmly declare that 'the shortest is not necessary the best!'</h3>
+				</section>
+
+				<section>
+					<h1>By the end of session #3</h1>
+					<h3 class="fragment"> You Scala code will become a set of transformations of immutable values</h3>
+				</section>
+
+				<section>
+					<h1>By the end of session #4</h1>
+					<h3 class="fragment"> All if statements in your code will silently become some elegant pattern</h3>
+				</section>
+
+				<section>
+					<h1>By the end of session #5</h1>
+					<h3 class="fragment"> You will never ever use null in your code again, like NEVER</h3>
+				</section>
+
+				<section>
+					<h1>No further ado</h1>
+					<pre class="fragment">
+						<code class="scala" data-trim>
+							"Are you ready to be a new Scalator?" foreach print
+						</code>
+					</pre>	
+				</section>
+
+				<section>
+					<h3>Programming languages</h3>
+					<h1>statically typed</h1>
+					<p>examples: Java, C++, Haskell, Scala</p>
+					<h3>vs</h3> 
+					<h1>dynamically typed</h1>
+					<p>examples: Python, Groovy, Javascript</p>
+				</section>
+
+				<section>
+					<div><img src="img/dynamic-advs.png" width="100%"></div>
+				</section>
+
+				<section>
+					<h1>Reason #1: Scala types</h1>
+					<ul>
+						<li class="fragment">They are strong</li>
+						<li class="fragment">They are static</li>
+						<li class="fragment">They can be automatically inferred</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Programming languages also</h3>
+					<h1>functional</h1>
+					<p>examples: Haskell, Scala</p>
+					<h3>vs</h3> 
+					<h1>imperative</h1>
+					<p>examples: Java, C++</p>
+				</section>
+
+				<section>
+					<h1> We could go like this</h1>
+					 <p class="fragment">
+					 	<a target="_blank" href="http://programmers.stackexchange.com/questions/209517/why-is-imperative-programming-preferred-over-functional-programming">Why is imperative programming preferred over functional ?</a>
+					  	(3rd link in 'functional vs imperative' google search)
+					 </p>
+					 <p class="fragment">
+					 	<a target="_blank" href="http://stackoverflow.com/questions/23277/what-is-the-difference-between-procedural-programming-and-functional-programming">Functional programming is like describing your problem to a mathematician. Imperative programming is like giving instructions to an idiot</a>
+					 	(stackoverflow answer with rating 85)
+					 </p>
+				</section>
+
+				<section>
+					<h1>But we are not like that</h1>
+					<p>
+						<a target="_blank" href="https://en.wikipedia.org/wiki/Functional_programming">In computer science, functional programming is a programming paradigm—a style of building the structure and elements of computer programs — that treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data.</a> 
+						(Wiki)
+					</p>
+				</section>
+
+				<section>
+					<h1>Reason #2: Scala functions</h1>
+					<ul>
+						<li class="fragment">First class citizens: passing as parameters, assigning to variables, currying</li>
+						<li class="fragment">Closures</li>
+						<li class="fragment">Functions, methods, anonymous functions (function literals)</li>
+					</ul>
+					<h3 class="fragment">You will be perfectly fine without understading all of this, at least not right away</h3>
+				</section>
+
+				<section>
+					<h1>Reason #3: Immutable by default</h1>
+					<ul>
+					<li class="fragment">Immutable variables
+						<pre>
+							<code class="scala" data-trim>
+val myVar = 45
+myVar = myVar + 1
+							</code>
+						</pre>
+					</li>
+					<li class="fragment">Immutable collections
+						<pre>
+							<code class="scala" data-trim>
+Seq(1, 2, 3) ++ Seq(4, 5)
+							</code>
+						</pre>
+					</li>
+				</section>
+
+				<section>
+					<h1>Quiz</h1>
+					<h3>Translate it to immutable code</h3>
+					<pre>
+							<code class="java" data-trim>
+int i = 0;
+boolean cond = true;
+if(cond) 
+  i = 1; 
+else 
+  i = 2;
+							</code>
+						</pre>
+						<pre class="fragment">
+							<code class="scala" data-trim>
+val i  = if(cond) 1 else 2 // everything in Scala is expression
+							</code>
+						</pre>
+				</section>
+
+				<section>
+					<h3>Programming languages also</h3>
+					<h1>functional</h1>
+					<p>examples: Haskell, Erlang</p>
+					<h3>vs</h3> 
+					<h1>Object Oriented</h1>
+					<p>examples: it depends!</p>
+					<p>prototype-based Javascript, classes based Java, etc </p>
+				</section>
+
+				<section>
+					<h1>Reason #4: Scala is a pure-bred OO language</h1>
+					<ul>
+						<li class="fragment">Traits and mixins</li>
+						<li class="fragment">Classes, case classes and case objects</li>
+						<li class="fragment">Inheritane and dynamic dispatching</li>
+						<li class="fragment">Every value is an object</li>
+						<li class="fragment">Etc</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h1>TBD: REMOVE ME</h1>
+				</section>
+
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+			Reveal.configure({ slideNumber: true });	
+		</script>
+
+	</body>
+</html>

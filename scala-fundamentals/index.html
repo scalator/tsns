@@ -1,0 +1,259 @@
+<!doctype html>
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Toronto Scala Night School</title>
+
+		<meta name="description" content="Scala for all">
+		<meta name="author" content="katrinsh, randomom">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/intellij.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/darkula.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="footer">
+				<p>
+					<small><a href="http://scalator.ca/initiatives/">#tsns #scala @scalato</a></small>
+				</p>
+			</div>
+
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>TSNS</h1>
+					<h3>Toronto Scala Night School</h3>
+          <h4>How Scala syntax makes you stronger?</h4>
+					<p>
+						<small>Katrin Shechtman/<a target="_blank" href="http://twitter.com/katrinsh">@katrinsh</a></small>
+						<small>Sean Glover/<a target="_blank" href="http://twitter.com/randonom">@randonom</a></small>
+					</p>
+					<div><a target="_blank" href="http://www.meetup.com/scalator/"><img src="img/logo.jpeg" width="30%"></a></div>
+				</section>
+
+        <!--
+
+        values/variables
+        type inference
+        functions
+        anatomy of a function
+          reduce non-idiomatic function to a more idiomatic one
+        anonymous functions
+        closures
+
+        case class
+
+        repl
+
+
+
+        -->
+
+        <section>
+          <h1>Are you ready?</h1>
+          <h3>Let's learn basic [idiomatic] Scala syntax</h3>
+
+          <h3>What is Idiomatic? syntax?</h3>
+          <div><img src="img/idiomatic.png" width="50%"></div>
+        </section>
+
+        <section>
+          <h1>Scala is a Hybrid language</h1>
+          <h3>Scala has a very flexible syntax because it mixes FP / OO</h3>
+          <h4 class="fragment">Examples of idiomatic language features</h3>
+          <ul>
+          <li class="fragment">Immutable values</li>
+          <li class="fragment">Appropriate use of type inference</li>
+          <li class="fragment">Scala Collection classes</li>
+          <li class="fragment">Case Classes & pattern matching</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Values & Variables</h1>
+
+          <div class="fragment">
+            <h3>Values are immutable and cannot be changed after declaration.</h3>
+            <pre class="fragment"><code>
+val immutable = "i'm invulnerable"
+
+immutable = "you can't change me" // val re-assign compiler error
+            </code></pre>
+          </div>
+          <div class="fragment">
+            <h3>Variables can be re-assigned</h3>
+            <pre class="fragment"><code>
+var mutable = "i can be compromised"
+
+mutable = "and there's nothing you can do about it"
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h1>Favour immutability over mutability</h1>
+
+          <div class="fragment">
+            <h3>Because..</h3>
+            <ul>
+              <li>Immutable values are easier to reason about when reading/debugging code</li>
+              <li>They are thread-safe and can be shared without the risk of their state changing</li>
+              <li>Can be easily shared by reference without the need for techniques like defensive copying</li>
+            </ul>
+          </div>
+          <div class="fragment">
+            <h3>Except when...</h3>
+            <ul>
+              <li>Performance concerns exist, optimization</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <h1>Scala has good Type Inference</h1>
+            <pre class="fragment"><code>
+val stringly = "i'm a string"
+
+val verbose: String = "i'm a verbose string assignment": String
+
+def stringCaller = "my return type is inferred"
+            </code></pre>
+
+            <div class="fragment">
+              <h3>Polymorphic type inference</h3>
+              <pre><code>
+val sequenceOfString = Seq("this", "sequence's", "type", "is", "inferred")
+
+val mixedBag = Seq(1, 2, "three", "banana", Math.PI)
+              </code></pre>
+            </div>
+        </section>
+
+        <section>
+          <h1>Scala Function 101</h1>
+
+          <div class="fragment">
+            <h3>Are you still with me?</h3>
+            <div><img src="img/asleep-in-class.jpg" width="50%"></div>
+          </div>
+
+        </section>
+
+        <section>
+          <h1>Anatomy of a Scala Function - Parameters</h1>
+
+          <pre><code>
+def mean(nums: Seq[Int]) = nums.sum / nums.size
+          </code></pre>
+
+          <ul>
+            <li>The same as other strongly typed languaged, except param name and type are reversed</li>
+          </ul>
+
+        </section>
+
+        <section>
+          <h1>Anatomy of a Scala Function - Return type</h1>
+
+          <pre><code>
+def mean(nums: Seq[Int]) = nums.sum / nums.size
+          </code></pre>
+
+          <ul>
+
+            <li class="fragment">Return type: Is inferred, but is required for recursive functions and is a good idea for functions you're exposing to 3rd parties.</li>
+            <ul class="fragment">
+              <li>A value is returned when an `=` is used</li>
+              <li>When no `=` is present the function will return a `Unit`/`()` (`void` in Java parlance)</li>
+            </ul>
+            <li class="fragment">Return value: The return keyword is available, but never used.  The last statement in an expression is a returned.</li>
+            <li class="fragment">Function body: "curly" braces are not required when the body contains a single expression.</li>
+          </ul>
+
+        </section>
+
+        <section>
+          <h1>Anatomy of a Scala Function - Function body</h1>
+
+          <pre><code>
+def mean(nums: Seq[Int]) = nums.sum / nums.size
+          </code></pre>
+
+          <ul>
+            <li class="fragment">Return value: The return keyword is available, but never used.  The last statement in an expression is a return.</li>
+            <li class="fragment">Function body: "curly" braces are not required when the body contains a single expression.</li>
+          </ul>
+
+        </section>
+
+        <section>
+          <h1>Resources</h1>
+
+          <ul>
+            <li><a href="http://programmers.stackexchange.com/questions/151733/if-immutable-objects-are-good-why-do-people-keep-creating-mutable-objects">Immutable vs Mutable programming</a></li>
+            <li><a href="https://twitter.github.io/scala_school/type-basics.html">Type & polymorphism basics</a></li>
+          </ul>
+        </section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+			Reveal.configure({ slideNumber: true });
+		</script>
+
+	</body>
+</html>

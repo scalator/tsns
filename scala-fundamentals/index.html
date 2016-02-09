@@ -158,6 +158,43 @@ val mixedBag = Seq(1, 2, "three", "banana", Math.PI)
         </section>
 
         <section>
+          <h1>Scala has good Type Inference</h1>
+          <pre class="fragment"><code>
+val stringly = "i'm a string"
+
+val verbose: String = "i'm a verbose string assignment": String
+
+def stringCaller = "my return type is inferred"
+          </code></pre>
+        </section>
+        
+        <section>
+          <h1>Polymorphic Types</h1>
+            <div class="fragment">
+              <h4>Polymorphic type inference</h3>
+              <pre><code>
+val sequenceOfString = Seq("this", "sequence's", "type", "is", "inferred")
+
+val mixedBag = Seq(1, 2, "three", "banana", Math.PI)
+              </code></pre>
+            </div>
+
+            <div class="fragment">
+              <h4>Inferring a closer ancestor</h3>
+              <pre><code>
+class Animal {}
+
+class Dog extends Animal {}
+class Cat extends Animal {}
+
+// evaluates to a Seq[Animal]
+val animals = Seq(new Dog, new Cat)
+              </code></pre>
+            </div>
+
+        </section>
+
+        <section>
           <h1>Scala Function 101</h1>
 
           <div class="fragment">
@@ -191,11 +228,9 @@ def mean(nums: Seq[Int]) = nums.sum / nums.size
 
             <li class="fragment">Return type: Is inferred, but is required for recursive functions and is a good idea for functions you're exposing to 3rd parties.</li>
             <ul class="fragment">
-              <li>A value is returned when an `=` is used</li>
-              <li>When no `=` is present the function will return a `Unit`/`()` (`void` in Java parlance)</li>
+              <li>A value is returned when an = is used</li>
+              <li>When no = is present the function will return a Unit/() (void in Java/C parlance).  () is a value that can be used to represent a type of Unit.</li>
             </ul>
-            <li class="fragment">Return value: The return keyword is available, but never used.  The last statement in an expression is a returned.</li>
-            <li class="fragment">Function body: "curly" braces are not required when the body contains a single expression.</li>
           </ul>
 
         </section>

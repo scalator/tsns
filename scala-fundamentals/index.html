@@ -155,19 +155,19 @@ def stringCaller = "my return type is inferred"
             <div class="fragment">
               <p>Polymorphic type inference</p>
               <pre><code>
-val sequenceOfString = Seq("this", "sequence's", "type", "is", "inferred")
+val sequenceOfString = Seq("this sequence type", "is", "inferred")
 
 val mixedBag = Seq(1, 2, "three", "banana", Math.PI)
               </code></pre>
             </div>
 
             <div class="fragment">
-              <p>Inferring a closer ancestor</p>
+              <p>Inferring a common ancestor</p>
               <pre><code>
-class Animal {}
+class Animal
 
-class Dog extends Animal {}
-class Cat extends Animal {}
+class Dog extends Animal
+class Cat extends Animal
 
 // evaluates to a Seq[Animal]
 val animals = Seq(new Dog, new Cat)

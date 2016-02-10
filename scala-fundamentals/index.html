@@ -69,6 +69,7 @@
           reduce non-idiomatic function to a more idiomatic one
         anonymous functions
         closures
+        function calling semantics
 
         case class
 
@@ -82,7 +83,7 @@
           <h1>Are you ready?</h1>
           <h3>Let's learn basic [idiomatic] Scala syntax</h3>
 
-          <h3>What is Idiomatic? syntax?</h3>
+          <p>What is Idiomatic syntax?</p>
           <div><img src="img/idiomatic.png" width="50%"></div>
         </section>
 
@@ -123,7 +124,7 @@ mutable = "and there's nothing you can do about it"
           <h1>Favour immutability over mutability</h1>
 
           <div class="fragment">
-            <h3>Because..</h3>
+            <p>Because..</p>
             <ul>
               <li>Immutable values are easier to reason about when reading/debugging code</li>
               <li>They are thread-safe and can be shared without the risk of their state changing</li>
@@ -131,7 +132,7 @@ mutable = "and there's nothing you can do about it"
             </ul>
           </div>
           <div class="fragment">
-            <h3>Except when...</h3>
+            <p>Except when...</p>
             <ul>
               <li>Performance concerns exist, optimization</li>
             </ul>
@@ -152,7 +153,7 @@ def stringCaller = "my return type is inferred"
         <section>
           <h1>Polymorphic Types</h1>
             <div class="fragment">
-              <h4>Polymorphic type inference</h3>
+              <p>Polymorphic type inference</p>
               <pre><code>
 val sequenceOfString = Seq("this", "sequence's", "type", "is", "inferred")
 
@@ -161,7 +162,7 @@ val mixedBag = Seq(1, 2, "three", "banana", Math.PI)
             </div>
 
             <div class="fragment">
-              <h4>Inferring a closer ancestor</h3>
+              <p>Inferring a closer ancestor</p>
               <pre><code>
 class Animal {}
 
@@ -179,7 +180,7 @@ val animals = Seq(new Dog, new Cat)
           <h1>Scala Function 101</h1>
 
           <div class="fragment">
-            <h3>Are you still with me?</h3>
+            <p>Are you still with me?</p>
             <div><img src="img/asleep-in-class.jpg" width="50%"></div>
           </div>
 
@@ -231,11 +232,84 @@ def mean(nums: Seq[Int]) = nums.sum / nums.size
         </section>
 
         <section>
+          <h1>Anonymous Functions, Lambdas</h1>
+
+          <pre><code>
+val mean = (nums: Seq[Int]) => nums.sum / nums.size
+          </code></pre>
+
+          <ul>
+            <li>Scala treats functions as first class citizens.  What's that mean?</li>
+            <li>Use "fat arrow" => notation.</li>
+            <li>Syntactic sugar for Function family of types (Arity 0 to 22, defined in default imports scala._).</li>
+            <ul>
+              <li>Function0.. huh?</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Function calling semantics</h1>
+          <small>"Can DSLs be human?" - @katrinsh</small>
+          <p>You can build very expressive Domain Specific Languages (DSL) in Scala because of the flexibility of its calling semantics</p>
+        </section>
+
+        <section>
+          <h1>The status quo</h1>
+
+          <div class="fragment">
+          <p>For the most part you sould continue to use the same semantics as in Java</p>
+          <pre><code>
+foo(42, bar)
+
+target.foo(42, bar)
+
+target.foo()
+          </code></pre>
+          <p>but there are other cases we can consider..</p>
+          </div>
+        </section>
+
+        <section>
+          <h1>Arity 0 Special Cases</h1>
+
+          <div class="fragment">
+          <pre><code>
+val bigList = 1 to 10e6.toInt
+
+bigList.size
+          </code></pre>
+          <ul>
+            <li>Parens should be used for Arity 0 functions that have no side-effects (FP term)</li>
+          </ul>
+          </div>
+        </section>
+
+        <section>
+          <h1>Arity 1 Special Cases</h1>
+
+          <div class="fragment">
+          <pre><code>
+val piSeq = Seq("the", "value", "of", "pi", "is", Math.PI)
+piSeq mkString " "
+
+val square = (x: Int) => Math.pow(x, 2)
+Seq(1,2,3) map square
+          </code></pre>
+          <ul>
+            <li>Like Arity 0 functions, parens should be used for Arity 1 functions that have no side-effects</li>
+            <li>When a function takes another single higher order function (i.e. Scala Collection types)</li>
+          </ul>
+          </div>
+        </section>
+
+        <section>
           <h1>Resources</h1>
 
           <ul>
             <li><a href="http://programmers.stackexchange.com/questions/151733/if-immutable-objects-are-good-why-do-people-keep-creating-mutable-objects">Immutable vs Mutable programming</a></li>
             <li><a href="https://twitter.github.io/scala_school/type-basics.html">Type & polymorphism basics</a></li>
+            <li><a href="http://docs.scala-lang.org/style/method-invocation.html">Scala Style Guide - Method Invocation</a>
           </ul>
         </section>
 

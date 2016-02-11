@@ -152,18 +152,18 @@ def stringCaller = "my return type is inferred"
         
         <section>
           <h1>Polymorphic Types</h1>
-            <div class="fragment">
-              <p>Polymorphic type inference</p>
-              <pre><code>
+          <div class="fragment">
+            <p>Polymorphic type inference</p>
+            <pre><code>
 val sequenceOfString = Seq("this sequence type", "is", "inferred")
 
 val mixedBag = Seq(1, 2, "three", "banana", Math.PI)
-              </code></pre>
-            </div>
+            </code></pre>
+          </div>
 
-            <div class="fragment">
-              <p>Inferring a common ancestor</p>
-              <pre><code>
+          <div class="fragment">
+            <p>Inferring a common ancestor</p>
+            <pre><code>
 class Animal
 
 class Dog extends Animal
@@ -171,8 +171,21 @@ class Cat extends Animal
 
 // evaluates to a Seq[Animal]
 val animals = Seq(new Dog, new Cat)
-              </code></pre>
-            </div>
+            </code></pre>
+
+            <small>Sidenote: Any vs Nothing, top vs bottom types.. next slide/aside.</small>
+          </div>
+        </section>
+
+
+        <section>
+          <h2>Aside: Type Hierarchy - Top and Bottom</h2>
+
+          <p class="fragment">As we saw earlier, Any is the supertype of all types</p>
+          <div class="fragment">
+          <p>`Nothing` or `Null` are bottom types, descendants of all types</p>
+          <img src="img/scalaHierarchy.jpg"/>
+          </div>
 
         </section>
 
@@ -282,6 +295,8 @@ bigList.size
           <ul>
             <li>Parens should be used for Arity 0 functions that have no side-effects (FP term)</li>
           </ul>
+
+          <small>Bonus points: check out <a href="http://www.scala-lang.org/old/node/138"><i>nullary functions</i>/<i>thunks</i></a></small>
           </div>
         </section>
 
@@ -304,12 +319,124 @@ Seq(1,2,3) map square
         </section>
 
         <section>
+          <h1>Statements and Expressions</h1>
+
+          <div class="fragment">
+          <p>Nearly every line of Scala is an expression.  Where expressions always return a value, statements do not.<p>
+          <div class="fragment">
+          <p>Some examples of statements: 
+          <ul>
+            <li>class definition</li>
+            <li>trait definition</li>
+            <li>value/variable declaration</li>
+            </ul>
+          </div>
+          </div>
+
+        </section>
+
+        <section>
+          <h1>Expressions and {}</h1>
+
+          <p class="fragment">Some constructs that are traditionally statements in other languages are expressions in Scala: if/else, for/while (type Unit), throw (type Nothing)<p>
+          <div class="fragment">
+            <p>When passing a function as the last parameter it's appropriate to use infix notation with an expression.</p>
+          <pre><code>
+Seq(1,2,3,2,1).foldLeft(0) { (last: Int, num:Int) =>
+  if (last >= num) last
+  else num
+}
+          </code></pre>
+          </div>
+
+        </section>
+
+        <section>
+          <h1>Just one more topic: Basic Types</h1>
+          
+          <img src="img/almost-there.jpg" />
+
+          <small>(Only what's absolutely necessary..)</small>
+        </section>
+
+        <section>
+          <h1>The Class</h1>
+
+          <pre><code>
+class Batman(alterEgo: String) {
+  def themeSong() = "DA NA NA NA NA NA, BATMAN!"
+  override def toString =
+    s"the batman is aka as $alterEgo"
+}
+          </code></pre>
+          <ul>
+          <li class="fragment">Many of the same features as Java classes (access mods, instance methods, new keyword)</li>
+          <li class="fragment">Constructor params properties (values, private, scope)</li>
+          <li class="fragment">Primary constructor is the expression body of the class (see worksheet!)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Case Classes</h1>
+
+          <pre><code>
+case class Superhero(name: String, sidekick: String)
+          </code></pre>
+          <ul>
+          <li class="fragment">Case classes are used to hold data and matching</li>
+          <li class="fragment">They can contain an implementation, but generally don't</li>
+          <li class="fragment">Constructor params properties (values, public)</li>
+          <li class="fragment">Instantiated without the new keyword</li>
+          <li class="fragment">Typically used with pattern matching (more about this in a later event)</li>
+          </ul>
+
+        </section>
+
+        <section>
+          <h1>Companion objects</h1>
+
+          <pre><code>
+object Scalator {
+  def apply(events: Seq[String]) = new Scalator(events)
+}
+
+class Scalator(events: Seq[String]) {
+  override def toString =
+    s"Scalator events: ${events.mkString(", ")}"
+}
+
+Scalator(Seq("Why scala?", "Scala Fundamentals", "Collections"))
+          </code></pre>
+
+          <ul>
+            <li class="fragment">Objects are Singletons (equivalent to a Java static class w/ static methods)</li>
+            <li class="fragment">Known as a "companion" object when it shares the same name with a class</li>
+            <li class="fragment">Generally used as factory classes for their class</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>require TODO</h1>
+        </section>
+
+        <section>
+          <h1>We did it!</h1>
+
+          <img style="width:75%" src="img/rickman-phew.gif"/>
+        </section>
+
+        <section>
+          <h1>assignment TODO</h1>
+        </section>
+
+        <section>
           <h1>Resources</h1>
 
           <ul>
             <li><a href="http://programmers.stackexchange.com/questions/151733/if-immutable-objects-are-good-why-do-people-keep-creating-mutable-objects">Immutable vs Mutable programming</a></li>
             <li><a href="https://twitter.github.io/scala_school/type-basics.html">Type & polymorphism basics</a></li>
-            <li><a href="http://docs.scala-lang.org/style/method-invocation.html">Scala Style Guide - Method Invocation</a>
+            <li><a href="http://docs.scala-lang.org/style/method-invocation.html">Scala Style Guide - Method Invocation</a></li>
+            <li><a href="http://boldradius.com/blog-post/VBbp8jIAADIAlv6D/expressions-vs-statements-in-scala">Expressions vs Statements in Scala</a></li>
           </ul>
         </section>
 
